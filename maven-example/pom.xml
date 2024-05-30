@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>2.7.18</version>
+		<version>2.7.18-spring-boot-2.7.20-trial</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.herodevs</groupId>
@@ -17,6 +17,18 @@
 	<properties>
 		<java.version>8</java.version>
 	</properties>
+	<repositories>
+		<repository>
+			<id>herodevs-nes-registry</id>
+			<url>https://registry.nes.herodevs.com/maven</url>
+		</repository>
+	</repositories>
+	<pluginRepositories>
+		<pluginRepository>
+			<id>herodevs-nes-registry</id>
+			<url>https://registry.nes.herodevs.com/maven</url>
+		</pluginRepository>
+	</pluginRepositories>
 	<dependencies>
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
