@@ -8,7 +8,7 @@ Note the following `<parent>` and `dependency` sections.
 <parent>
   <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-starter-parent</artifactId>
-  <version>2.7.18</version>
+  <version>1.5.22.RELEASE</version>
   <relativePath />
 </parent>
 ```
@@ -49,8 +49,8 @@ First, check the version of a Spring dependency. This example shows the dependen
 [INFO]
 [INFO] --- dependency:3.3.0:tree (default-cli) @ demo ---
 [INFO] com.example:demo:jar:0.0.1-SNAPSHOT
-[INFO] \- org.springframework.boot:spring-boot-starter-web:jar:2.7.18:compile
-[INFO]    \- org.springframework:spring-webmvc:jar:5.3.31:compile
+[INFO] \- org.springframework.boot:spring-boot-starter-web:1.5.22.RELEASE:compile
+[INFO]    \- org.springframework:spring-webmvc:jar:4.3.30.RELEASE:compile
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
@@ -63,7 +63,7 @@ First, check the version of a Spring dependency. This example shows the dependen
 
 To use the NES version of Spring Boot, update the following. 
 
-_For a complete example of the changes, see [here](https://github.com/neverendingsupport/nes-spring-boot-test-apps/compare/main...maven-sample-with-nes-foundations)._
+_For a complete example of the changes, see [here](https://github.com/neverendingsupport/nes-spring-boot-test-apps/compare/main...maven-sample-with-nes-foundations_4)._
 
 1. Set up the NES registry as a Maven repository source
 In your `${user.home}/.m2/settings.xml` or `${maven.home}/conf/settings.xml`.
@@ -118,7 +118,7 @@ Add to your Maven POM.
 <parent>
   <groupId>com.herodevs.nes.springframework.boot</groupId>
   <artifactId>spring-boot-starter-parent</artifactId>
-  <version>2.7.18-spring-boot-2.7.19</version>
+  <version>1.5.22-spring-boot-1.5.23-trial</version>
   <relativePath />
 </parent>
 ```
@@ -189,8 +189,8 @@ If the setup was successful, the original `org.springframework:spring-webmvc` de
 [INFO]
 [INFO] --- dependency:3.3.0:tree (default-cli) @ demo ---
 [INFO] com.example:demo:jar:0.0.1-SNAPSHOT
-[INFO] \- com.herodevs.nes.springframework.boot:spring-boot-starter-web:jar:2.7.18-spring-boot-2.7.19:compile
-[INFO]    \- com.herodevs.nes.springframework:spring-webmvc:jar:5.3.39-spring-framework-5.3.40:compile
+[INFO] \- com.herodevs.nes.springframework.boot:spring-boot-starter-web:jar:1.5.22-spring-boot-1.5.23-trial:compile
+[INFO]    \- com.herodevs.nes.springframework:spring-webmvc:jar:4.3.30-spring-framework-4.3.31-trial:compile
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
