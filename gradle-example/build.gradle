@@ -1,21 +1,33 @@
-plugins {
-  id 'java'
-  id 'com.herodevs.nes.springframework.boot' version '2.7.18-spring-boot-2.7.19-trial'
-  id 'io.spring.dependency-management' version '1.0.15.RELEASE'
+buildscript {
+  repositories {
+    maven {
+      url = uri("${herodevs_nes_registry_url}")
+      credentials {
+        username = "${herodevs_nes_registry_user}"
+      }
+    }
+    mavenCentral()
+  }
+  dependencies {
+    // Include SpringBoot itself as an external dependency.
+    classpath("com.herodevs.nes.springframework.boot:spring-boot-gradle-plugin:1.5.22-spring-boot-1.5.23-trial")
+  }
 }
+
+apply plugin: 'java'
+apply plugin: 'eclipse'
+apply plugin: 'idea'
+apply plugin: 'org.springframework.boot'
+apply plugin: 'application'
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 
-java {
-  sourceCompatibility = '8'
-}
-
 repositories {
   maven {
-    url = uri(providers.gradleProperty("herodevs_nes_registry_url").get())
+    url = uri("${herodevs_nes_registry_url}")
     credentials {
-      username = providers.gradleProperty("herodevs_nes_registry_user").get()
+      username = "${herodevs_nes_registry_user}"
     }
   }
   mavenCentral()
@@ -24,11 +36,6 @@ repositories {
 dependencies {
   implementation "com.herodevs.nes.springframework.boot:spring-boot-starter-thymeleaf"
   implementation "com.herodevs.nes.springframework.boot:spring-boot-starter-web"
-  developmentOnly "com.herodevs.nes.springframework.boot:spring-boot-devtools"
   testImplementation "com.herodevs.nes.springframework.boot:spring-boot-starter-test"
-  testRuntimeOnly 'org.junit.platform:junit-platform-launcher'
-}
-
-tasks.named('test') {
-  useJUnitPlatform()
+  testImplementation "junit:junit:4.13.2"
 }
