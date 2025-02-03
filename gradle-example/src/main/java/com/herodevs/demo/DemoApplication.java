@@ -1,4 +1,4 @@
-package com.example.springmaven;
+package com.herodevs.demo;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;

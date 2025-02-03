@@ -9,8 +9,8 @@
 		<version>2.7.18</version>
 		<relativePath /> <!-- lookup parent from repository -->
 	</parent>
-	<groupId>com.example</groupId>
-	<artifactId>demo</artifactId>
+	<groupId>com.herodevs</groupId>
+	<artifactId>nes-maven-demo</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
 	<name>NES Spring Boot Demo</name>
 	<description>Demo project for Spring Boot</description>
