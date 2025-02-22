@@ -98,7 +98,7 @@ A web-based, searchable dependency report is available by adding the --scan opti
 To use the NES version of Spring Boot, update the following.
 
 _For a complete example of the changes,
-see [here](https://github.com/neverendingsupport/nes-spring-boot-test-apps/compare/main...gradle-sample-with-nes-foundations)._
+see [here](https://github.com/neverendingsupport/nes-spring-boot-test-apps/compare/main-spring-boot-2.7...gradle-sample-nes-spring-boot-2.7)._
 
 1. Set up the NES registry as a Gradle repository source in your global Gradle properties file
    e.g. `~/.gradle/gradle.properties`
@@ -106,7 +106,6 @@ see [here](https://github.com/neverendingsupport/nes-spring-boot-test-apps/compa
 ```properties
 herodevs_nes_registry_url=https://registry.nes.herodevs.com/maven
 herodevs_nes_registry_user=your-username
-herodevs_nes_registry_token=your-token
 ```
 
 Add the NES repository to the maven repos. This is done in two files.
@@ -125,7 +124,6 @@ pluginManagement {
       url = uri(providers.gradleProperty("herodevs_nes_registry_url").get())
       credentials {
         username = providers.gradleProperty("herodevs_nes_registry_user").get()
-        password = providers.gradleProperty("herodevs_nes_registry_token").get()
       }
     }
   }
@@ -146,21 +144,21 @@ repositories {
 }
 ```
 
-2. Update the coordinates of the `org.springframework.boot` related dependencies and NES version
+2. Update the version of the `org.springframework.boot` Gradle plugin. 
 
 ```groovy
 plugins {
   id 'java'
-  id 'com.herodevs.nes.springframework.boot' version '2.7.18-spring-boot-2.7.19-trial'
+  id 'org.springframework.boot' version '2.7.18-spring-boot-2.7.20-trial'
   id 'io.spring.dependency-management' version '1.0.15.RELEASE'
 }
 ```
 
 ```groovy
 dependencies {
-  implementation "com.herodevs.nes.springframework.boot:spring-boot-starter-thymeleaf"
-  implementation "com.herodevs.nes.springframework.boot:spring-boot-starter-web"
-  developmentOnly "com.herodevs.nes.springframework.boot:spring-boot-devtools"
+  implementation "org.springframework.boot:spring-boot-starter-thymeleaf"
+  implementation "org.springframework.boot:spring-boot-starter-web"
+  developmentOnly "org.springframework.boot:spring-boot-devtools"
   // ... others omitted for brevity
 }
 ```
@@ -170,16 +168,16 @@ dependencies {
 ./gradlew -q dependencyInsight --configuration runtimeClasspath --dependency spring-web
 ```
 
-Note the replacement of the `org.springframework:spring-web` dependency in the snippet below.
+If the setup was successful, the original `org.springframework:spring-web` dependency is replaced by the new version in NES for Spring Framework managed by NES for Spring Boot.
 
 ```shell
-com.herodevs.nes.springframework:spring-web:5.3.39-spring-framework-5.3.40-trial
-+--- com.herodevs.nes.springframework:spring-webmvc:5.3.39-spring-framework-5.3.40-trial
-|    \--- com.herodevs.nes.springframework.boot:spring-boot-starter-web:2.7.18-spring-boot-2.7.19-trial
-|         \--- runtimeClasspath (requested com.herodevs.nes.springframework.boot:spring-boot-starter-web)
-+--- com.herodevs.nes.springframework.boot:spring-boot-starter-json:2.7.18-spring-boot-2.7.19-trial
-|    \--- com.herodevs.nes.springframework.boot:spring-boot-starter-web:2.7.18-spring-boot-2.7.19-trial (*)
-\--- com.herodevs.nes.springframework.boot:spring-boot-starter-web:2.7.18-spring-boot-2.7.19-trial (*)
+org.springframework:spring-web:5.3.39-spring-framework-5.3.41-trial
++--- org.springframework:spring-webmvc:5.3.39-spring-framework-5.3.41-trial
+|    \--- org.springframework.boot:spring-boot-starter-web:2.7.18-spring-boot-2.7.20-trial
+|         \--- runtimeClasspath (requested org.springframework.boot:spring-boot-starter-web)
++--- org.springframework.boot:spring-boot-starter-json:2.7.18-spring-boot-2.7.20-trial
+|    \--- org.springframework.boot:spring-boot-starter-web:2.7.18-spring-boot-2.7.20-trial (*)
+\--- org.springframework.boot:spring-boot-starter-web:2.7.18-spring-boot-2.7.20-trial (*)
 ```
 
 <details>
@@ -188,7 +186,7 @@ com.herodevs.nes.springframework:spring-web:5.3.39-spring-framework-5.3.40-trial
 
 ```shell
 ➜   ./gradlew -q dependencyInsight --configuration runtimeClasspath --dependency spring-web
-com.herodevs.nes.springframework:spring-web:5.3.39-spring-framework-5.3.40-trial (selected by rule)
+org.springframework:spring-web:5.3.39-spring-framework-5.3.41-trial (selected by rule)
   Variant runtimeElements:
     | Attribute Name                      | Provided     | Requested    |
     |-------------------------------------|--------------|--------------|
@@ -197,20 +195,20 @@ com.herodevs.nes.springframework:spring-web:5.3.39-spring-framework-5.3.40-trial
     | org.jetbrains.kotlin.platform.type  | jvm          |              |
     | org.gradle.category                 | library      | library      |
     | org.gradle.dependency.bundling      | external     | external     |
-    | org.gradle.jvm.version              | 8            | 11           |
+    | org.gradle.jvm.version              | 8            | 8            |
     | org.gradle.libraryelements          | jar          | jar          |
     | org.gradle.usage                    | java-runtime | java-runtime |
     | org.gradle.jvm.environment          |              | standard-jvm |
 
-com.herodevs.nes.springframework:spring-web:5.3.39-spring-framework-5.3.40-trial
-+--- com.herodevs.nes.springframework:spring-webmvc:5.3.39-spring-framework-5.3.40-trial
-|    \--- com.herodevs.nes.springframework.boot:spring-boot-starter-web:2.7.18-spring-boot-2.7.19-trial
-|         \--- runtimeClasspath (requested com.herodevs.nes.springframework.boot:spring-boot-starter-web)
-+--- com.herodevs.nes.springframework.boot:spring-boot-starter-json:2.7.18-spring-boot-2.7.19-trial
-|    \--- com.herodevs.nes.springframework.boot:spring-boot-starter-web:2.7.18-spring-boot-2.7.19-trial (*)
-\--- com.herodevs.nes.springframework.boot:spring-boot-starter-web:2.7.18-spring-boot-2.7.19-trial (*)
+org.springframework:spring-web:5.3.39-spring-framework-5.3.41-trial
++--- org.springframework:spring-webmvc:5.3.39-spring-framework-5.3.41-trial
+|    \--- org.springframework.boot:spring-boot-starter-web:2.7.18-spring-boot-2.7.20-trial
+|         \--- runtimeClasspath (requested org.springframework.boot:spring-boot-starter-web)
++--- org.springframework.boot:spring-boot-starter-json:2.7.18-spring-boot-2.7.20-trial
+|    \--- org.springframework.boot:spring-boot-starter-web:2.7.18-spring-boot-2.7.20-trial (*)
+\--- org.springframework.boot:spring-boot-starter-web:2.7.18-spring-boot-2.7.20-trial (*)
 
-com.herodevs.nes.springframework:spring-webmvc:5.3.39-spring-framework-5.3.40-trial (selected by rule)
+org.springframework:spring-webmvc:5.3.39-spring-framework-5.3.41-trial (selected by rule)
   Variant runtimeElements:
     | Attribute Name                      | Provided     | Requested    |
     |-------------------------------------|--------------|--------------|
@@ -219,14 +217,14 @@ com.herodevs.nes.springframework:spring-webmvc:5.3.39-spring-framework-5.3.40-tr
     | org.jetbrains.kotlin.platform.type  | jvm          |              |
     | org.gradle.category                 | library      | library      |
     | org.gradle.dependency.bundling      | external     | external     |
-    | org.gradle.jvm.version              | 8            | 11           |
+    | org.gradle.jvm.version              | 8            | 8            |
     | org.gradle.libraryelements          | jar          | jar          |
     | org.gradle.usage                    | java-runtime | java-runtime |
     | org.gradle.jvm.environment          |              | standard-jvm |
 
-com.herodevs.nes.springframework:spring-webmvc:5.3.39-spring-framework-5.3.40-trial
-\--- com.herodevs.nes.springframework.boot:spring-boot-starter-web:2.7.18-spring-boot-2.7.19-trial
-     \--- runtimeClasspath (requested com.herodevs.nes.springframework.boot:spring-boot-starter-web)
+org.springframework:spring-webmvc:5.3.39-spring-framework-5.3.41-trial
+\--- org.springframework.boot:spring-boot-starter-web:2.7.18-spring-boot-2.7.20-trial
+     \--- runtimeClasspath (requested org.springframework.boot:spring-boot-starter-web)
 
 (*) - Indicates repeated occurrences of a transitive dependency subtree. Gradle expands transitive dependency subtrees only once per project; repeat occurrences only display the root of the subtree, followed by this annotation.
 

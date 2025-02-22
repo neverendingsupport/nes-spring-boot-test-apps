@@ -59,11 +59,11 @@ First, check the version of a Spring dependency. This example shows the dependen
 </details>
 
 
-## After: Using HeroDevs, NES for Spring
+## After: Using HeroDevs, NES for Spring Boot
 
 To use the NES version of Spring Boot, update the following. 
 
-_For a complete example of the changes, see [here](https://github.com/neverendingsupport/nes-spring-boot-test-apps/compare/main...maven-sample-with-nes-foundations)._
+_For a complete example of the changes, see [here](https://github.com/neverendingsupport/nes-spring-boot-test-apps/compare/main-spring-boot-2.7...maven-sample-nes-spring-boot-2.7)._
 
 1. Set up the NES registry as a Maven repository source
 In your `${user.home}/.m2/settings.xml` or `${maven.home}/conf/settings.xml`.
@@ -113,28 +113,26 @@ Add to your Maven POM.
 ```
 
 
-2. Set the `groupId` and `version` of `spring-boot-starter-parent`
+2. Update the `version` of `spring-boot-starter-parent`
 ```xml
 <parent>
-  <groupId>com.herodevs.nes.springframework.boot</groupId>
+  <groupId>org.springframework.boot</groupId>
   <artifactId>spring-boot-starter-parent</artifactId>
-  <version>2.7.18-spring-boot-2.7.19</version>
+  <version>2.7.18-spring-boot-2.7.20-trial</version>
   <relativePath />
 </parent>
-```
-2. Change the `groupId` of the Spring Boot dependencies
-```xml
+
 <dependencies>
   <dependency>
-    <groupId>com.herodevs.nes.springframework.boot</groupId>
+    <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot</artifactId>
   </dependency>
   <dependency>
-    <groupId>com.herodevs.nes.springframework.boot</groupId>
+    <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-thymeleaf</artifactId>
   </dependency>
   <dependency>
-    <groupId>com.herodevs.nes.springframework.boot</groupId>
+    <groupId>org.springframework.boot</groupId>
     <artifactId>spring-boot-starter-web</artifactId>
   </dependency>
   <!-- ...others omitted for brevity... -->
@@ -146,57 +144,30 @@ Add to your Maven POM.
 ```shell
 ./mvnw dependency:tree -Dincludes=org.springframework:spring-webmvc --settings settings.xml
 ```
-If the setup was successful, the original `org.springframework:spring-webmvc` dependency is replaced by `com.herodevs.nes.springframework:spring-webmvc`.
+If the setup was successful, the original `org.springframework:spring-webmvc` dependency is replaced by the new version in NES for Spring Framework managed by NES for Spring Boot.
 
 <details>
 
 <summary>Example</summary>
 
 ```shell
-➜  maven-example git:(maven-readme) ./mvnw dependency:tree -Dincludes=org.springframework:spring-webmvc
+➜   ./mvnw dependency:tree -Dincludes=org.springframework:spring-webmvc --settings settings.xml
 [INFO] Scanning for projects...
 [INFO]
-[INFO] --------------------------< com.example:demo >--------------------------
+[INFO] --------------------< com.herodevs:nes-maven-demo >---------------------
 [INFO] Building NES Spring Boot Demo 0.0.1-SNAPSHOT
 [INFO]   from pom.xml
 [INFO] --------------------------------[ jar ]---------------------------------
 [INFO]
-[INFO] --- dependency:3.3.0:tree (default-cli) @ demo ---
+[INFO] --- dependency:3.3.0:tree (default-cli) @ nes-maven-demo ---
+[INFO] com.herodevs:nes-maven-demo:jar:0.0.1-SNAPSHOT
+[INFO] \- org.springframework.boot:spring-boot-starter-web:jar:2.7.18-spring-boot-2.7.20-trial:compile
+[INFO]    \- org.springframework:spring-webmvc:jar:5.3.39-spring-framework-5.3.41-trial:compile
 [INFO] ------------------------------------------------------------------------
 [INFO] BUILD SUCCESS
 [INFO] ------------------------------------------------------------------------
-[INFO] Total time:  0.684 s
-[INFO] Finished at: 2024-08-23T14:49:19-04:00
+[INFO] Total time:  0.753 s
+[INFO] Finished at: 2025-02-22T17:23:16-05:00
 [INFO] ------------------------------------------------------------------------
 ```
-</details>
-
-```shell
-./mvnw dependency:tree -Dincludes=com.herodevs.nes.springframework:spring-webmvc --settings settings.xml
-```
-<details>
-
-<summary>Example</summary>
-
-```shell
-➜   ./mvnw dependency:tree -Dincludes=com.herodevs.nes.springframework:spring-webmvc
-[INFO] Scanning for projects...
-[INFO]
-[INFO] --------------------------< com.example:demo >--------------------------
-[INFO] Building NES Spring Boot Demo 0.0.1-SNAPSHOT
-[INFO]   from pom.xml
-[INFO] --------------------------------[ jar ]---------------------------------
-[INFO]
-[INFO] --- dependency:3.3.0:tree (default-cli) @ demo ---
-[INFO] com.example:demo:jar:0.0.1-SNAPSHOT
-[INFO] \- com.herodevs.nes.springframework.boot:spring-boot-starter-web:jar:2.7.18-spring-boot-2.7.19:compile
-[INFO]    \- com.herodevs.nes.springframework:spring-webmvc:jar:5.3.39-spring-framework-5.3.40:compile
-[INFO] ------------------------------------------------------------------------
-[INFO] BUILD SUCCESS
-[INFO] ------------------------------------------------------------------------
-[INFO] Total time:  1.101 s
-[INFO] Finished at: 2024-08-23T14:48:42-04:00
-[INFO] ------------------------------------------------------------------------
-```
-
 </details>
