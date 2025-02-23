@@ -6,7 +6,7 @@
 	<parent>
 		<groupId>org.springframework.boot</groupId>
 		<artifactId>spring-boot-starter-parent</artifactId>
-		<version>1.5.22.RELEASE</version>
+		<version>1.5.22-spring-boot-1.5.24-trial</version>
 	</parent>
 	<groupId>com.example</groupId>
 	<artifactId>demo</artifactId>
