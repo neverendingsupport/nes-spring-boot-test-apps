@@ -1,6 +1,9 @@
-# NES for Spring
+> [!WARNING]
+> This guide is outdated and will be removed soon.
 
-This repository contains example Spring Boot applications demonstrating how to use the NES version of Spring Boot from HeroDevs. :handshake:
+# ~~NES for Spring~~
 
-* [Sample Maven App](/maven-example/README.md)
-* [Sample Gradle App](/gradle-example/README.md)
+~~This repository contains example Spring Boot applications demonstrating how to use the NES version of Spring Boot from HeroDevs. :handshake:~~
+
+* [~~Sample Maven App~~](/maven-example/README.md)
+* [~~Sample Gradle App~~](/gradle-example/README.md)
